@@ -20,14 +20,7 @@ public class VacanciesEntity implements Serializable {
 
     private BigDecimal codeVacancies;
     private String nameVacancies;
-
-//    @ManyToOne
-//    @JoinColumn (name = "LEADER_NAME")
-//    private LeaderEntity leaderEntity;
-
     private String nameLeader;
-
-
     private String requiredPosition;
     private String requiredLevel;
     private String serviceName;

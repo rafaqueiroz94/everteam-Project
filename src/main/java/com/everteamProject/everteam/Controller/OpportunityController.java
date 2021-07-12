@@ -4,6 +4,7 @@ package com.everteamProject.everteam.Controller;
 import com.everteamProject.everteam.Service.OpportunityService;
 import com.everteamProject.everteam.models.Enum.TypeStatus;
 import com.everteamProject.everteam.models.OpportunityEntity;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,13 +23,17 @@ public class OpportunityController {
     OpportunityService service;
 
     @PostMapping("/new-opportunity")
+    @ApiOperation(value = "Nova oportunidade")
     public OpportunityEntity saveNewOpportunity(@RequestBody OpportunityEntity opportunityEntity){
         return service.postNewOpportunity(opportunityEntity);
     }
-    @PatchMapping("/id")
-    public ResponseEntity updateOpportunity(@RequestParam (value = "id")long id,@RequestBody OpportunityEntity opportunityEntity){
-        return service.updateOpportunity(id,opportunityEntity);
 
+    @PatchMapping("/id")
+    public ResponseEntity updateOpportunity(
+            @RequestParam (value = "id")long id,
+            @RequestBody OpportunityEntity opportunityEntity
+    ){
+        return service.updateOpportunity(id,opportunityEntity);
     }
 
     @GetMapping ("/listAll-opportunity")

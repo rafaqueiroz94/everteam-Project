@@ -22,7 +22,7 @@ public class VacanciesController {
     VacanciesService service;
 
     @PostMapping("/new-vacancies")
-    public VacanciesEntity newVacancies( @RequestBody VacanciesEntity vacanciesEntity){
+    public VacanciesEntity newVacancies(@RequestBody VacanciesEntity vacanciesEntity){
         return service.postNewVacancies(vacanciesEntity);
     }
 
@@ -47,7 +47,10 @@ public class VacanciesController {
     }
 
     @PatchMapping ("/id")
-    public ResponseEntity updateVacancies(@RequestParam (value = "id")long id,@RequestBody VacanciesEntity vacanciesEntity){
+    public ResponseEntity updateVacancies(
+            @RequestParam (value = "id")long id,
+            @RequestBody VacanciesEntity vacanciesEntity
+    ){
         return service.updateVacancies(id,vacanciesEntity);
     }
 

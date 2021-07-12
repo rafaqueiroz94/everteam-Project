@@ -18,11 +18,12 @@ public class OpportunityServiceImpl implements OpportunityService {
     OpportunityRepository repository;
 
     @Override
-    public OpportunityEntity postNewOpportunity( OpportunityEntity opportunityEntity){
+    public OpportunityEntity postNewOpportunity(OpportunityEntity opportunityEntity){
         return repository.save(opportunityEntity);
     }
+
     @Override
-        public ResponseEntity updateOpportunity(Long id, OpportunityEntity opportunityEntity) {
+    public ResponseEntity updateOpportunity(Long id, OpportunityEntity opportunityEntity) {
         return repository.findById(id)
                 .map(user -> {
 
@@ -51,9 +52,6 @@ public class OpportunityServiceImpl implements OpportunityService {
                         user.setCloseDate(opportunityEntity.getCloseDate());
                     }
 
-//                    if (opportunityEntity.getStatus() != null && !opportunityEntity.getStatus().getDeclaringClass().isEnum()) {
-//                        user.setStatus(opportunityEntity.getStatus());
-//                    }
                     repository.save(user);
                     return ResponseEntity.ok(user);
                 }).orElse(ResponseEntity.notFound().build());
@@ -63,15 +61,17 @@ public class OpportunityServiceImpl implements OpportunityService {
     @Override
     public ResponseEntity changeStatus(Long id, TypeStatus status){
         return repository.findById(id).
-                map( us -> {
+                map(us -> {
 
                     if (us.getStatus().toString() !=null) {
                         us.setStatus(status);
                     }
+
                     repository.save(us);
                    return ResponseEntity.ok().build();
         }).orElse(ResponseEntity.notFound().build());
     }
+
     @Override
     public List getOpportunity(){
         return repository.findAll();
@@ -81,6 +81,7 @@ public class OpportunityServiceImpl implements OpportunityService {
     public List<OpportunityEntity> getNameOpportunity(String name){
         return repository.findByName(name);
     }
+
     @Override
     public List<OpportunityEntity> searchStatus(TypeStatus status){
         return repository.findByStatus(status.toString());
