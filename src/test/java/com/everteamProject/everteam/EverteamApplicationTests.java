@@ -8,6 +8,7 @@ class EverteamApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }
