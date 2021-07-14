@@ -21,6 +21,8 @@ public class OpportunityEntity implements Serializable {
 
     private BigDecimal codeOpportunity;
     private String nameOpportunity;
+    private String responsibleName;
+    private String responsibleEmail;
     private String descriptionOpportunity;
     private String typeOpportunity;
     private String requirement;
@@ -53,6 +55,22 @@ public class OpportunityEntity implements Serializable {
 
     public void setNameOpportunity(String nameOpportunity) {
         this.nameOpportunity = nameOpportunity;
+    }
+
+    public String getResponsibleName() {
+        return responsibleName;
+    }
+
+    public void setResponsibleName(String responsibleName) {
+        this.responsibleName = responsibleName;
+    }
+
+    public String getResponsibleEmail() {
+        return responsibleEmail;
+    }
+
+    public void setResponsibleEmail(String responsibleEmail) {
+        this.responsibleEmail = responsibleEmail;
     }
 
     public String getDescriptionOpportunity() {
@@ -115,12 +133,15 @@ public class OpportunityEntity implements Serializable {
 
     }
 
-    public OpportunityEntity(BigDecimal codeOpportunity, String nameOpportunity, String descriptionOpportunity,
-                             String typeOpportunity, String requirement, String requirementDescription,
-                             Date openDate, String closeDate, TypeStatus status) {
-
+    public OpportunityEntity(long id, BigDecimal codeOpportunity, String nameOpportunity, String responsibleName,
+                             String responsibleEmail, String descriptionOpportunity, String typeOpportunity,
+                             String requirement, String requirementDescription, Date openDate, String closeDate,
+                             TypeStatus status) {
+        this.id = id;
         this.codeOpportunity = codeOpportunity;
         this.nameOpportunity = nameOpportunity;
+        this.responsibleName = responsibleName;
+        this.responsibleEmail = responsibleEmail;
         this.descriptionOpportunity = descriptionOpportunity;
         this.typeOpportunity = typeOpportunity;
         this.requirement = requirement;
