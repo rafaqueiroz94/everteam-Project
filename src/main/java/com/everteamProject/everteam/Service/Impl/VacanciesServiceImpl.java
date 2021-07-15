@@ -53,7 +53,7 @@ public class VacanciesServiceImpl implements VacanciesService {
                     if (vacanciesEntity.getNameLeader() !=null && !vacanciesEntity.getNameLeader().isEmpty()){
                         user.setNameLeader(vacanciesEntity.getNameLeader());
                     }
-                    if (vacanciesEntity.getRequiredPosition() !=null && !vacanciesEntity.getRequiredPosition().isEmpty()) {
+                    if (vacanciesEntity.getRequiredPosition() !=null && !vacanciesEntity.getRequiredPosition().isEmpty()){
                         user.setRequiredPosition(vacanciesEntity.getRequiredPosition());
                     }
                     if (vacanciesEntity.getRequiredLevel() !=null && !vacanciesEntity.getRequiredLevel().isEmpty()){

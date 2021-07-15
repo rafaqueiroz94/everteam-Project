@@ -57,7 +57,7 @@ public class OpportunityServiceTest {
 
     @Test
     public void testNewOpportunity(){
-        OpportunityEntity data = new OpportunityEntity(1,BigDecimal.valueOf(123),"Oportunidade",
+        OpportunityEntity data = new OpportunityEntity(2,BigDecimal.valueOf(123),"Oportunidade",
                 "Rento","teste@email","descrição","tipo oportunidade",
                 "requerimento","requerimento descrição","community","release",
                 "squad",null,null,
