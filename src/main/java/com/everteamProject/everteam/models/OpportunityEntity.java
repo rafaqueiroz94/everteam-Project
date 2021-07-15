@@ -30,7 +30,7 @@ public class OpportunityEntity implements Serializable {
     private String community;
     private String releaseTrain;
     private String squad;
-    private Date openDate;
+    private String openDate;
     private String closeDate;
 
     @Enumerated(value = EnumType.STRING)
@@ -132,11 +132,11 @@ public class OpportunityEntity implements Serializable {
         this.squad = squad;
     }
 
-    public Date getOpenDate() {
+    public String getOpenDate() {
         return openDate;
     }
 
-    public void setOpenDate(Date openDate) {
+    public void setOpenDate(String openDate) {
         this.openDate = openDate;
     }
 
@@ -163,7 +163,7 @@ public class OpportunityEntity implements Serializable {
     public OpportunityEntity (long id, BigDecimal codeOpportunity, String nameOpportunity, String responsibleName,
                              String responsibleEmail, String descriptionOpportunity, String typeOpportunity,
                              String requirement, String requirementDescription, String community, String releaseTrain,
-                             String squad, Date openDate, String closeDate, TypeStatus status) {
+                             String squad, String openDate, String closeDate, TypeStatus status) {
         this.id = id;
         this.codeOpportunity = codeOpportunity;
         this.nameOpportunity = nameOpportunity;

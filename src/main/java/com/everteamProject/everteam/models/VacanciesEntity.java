@@ -26,7 +26,7 @@ public class VacanciesEntity implements Serializable {
     private String serviceName;
     private String requirements;
     private String desirableRequirements;
-    private Date openDate;
+    private String openDate;
     private String closeDate;
 
     @Enumerated(value = EnumType.STRING)
@@ -104,11 +104,11 @@ public class VacanciesEntity implements Serializable {
         this.desirableRequirements = desirableRequirements;
     }
 
-    public Date getOpenDate() {
+    public String getOpenDate() {
         return openDate;
     }
 
-    public void setOpenDate(Date openDate) {
+    public void setOpenDate(String openDate) {
         this.openDate = openDate;
     }
 
@@ -134,7 +134,7 @@ public class VacanciesEntity implements Serializable {
 
     public VacanciesEntity(long id, BigDecimal codeVacancies, String nameVacancies, String nameLeader,
                            String requiredPosition, String requiredLevel, String serviceName, String requirements,
-                           String desirableRequirements, Date openDate, String closeDate, TypeStatus status) {
+                           String desirableRequirements, String openDate, String closeDate, TypeStatus status) {
         this.id = id;
         this.codeVacancies = codeVacancies;
         this.nameVacancies = nameVacancies;

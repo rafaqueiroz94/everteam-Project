@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.xml.crypto.Data;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -19,6 +22,11 @@ public class OpportunityServiceImpl implements OpportunityService {
 
     @Override
     public OpportunityEntity postNewOpportunity(OpportunityEntity opportunityEntity){
+        Date data = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+
+            opportunityEntity.setOpenDate(format.format(data));
+
         return repository.save(opportunityEntity);
     }
 
@@ -60,7 +68,7 @@ public class OpportunityServiceImpl implements OpportunityService {
                     if (opportunityEntity.getSquad() !=null && !opportunityEntity.getSquad().isEmpty()){
                         user.setSquad(opportunityEntity.getSquad());
                     }
-                    if (opportunityEntity.getOpenDate() != null) {
+                    if (opportunityEntity.getOpenDate() != null && !opportunityEntity.getOpenDate().isEmpty()) {
                         user.setOpenDate(opportunityEntity.getOpenDate());
                     }
                     if (opportunityEntity.getCloseDate() != null && !opportunityEntity.getCloseDate().isEmpty()) {

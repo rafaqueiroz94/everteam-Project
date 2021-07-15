@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -21,6 +23,10 @@ public class VacanciesServiceImpl implements VacanciesService {
 
     @Override
     public VacanciesEntity postNewVacancies(VacanciesEntity vacanciesEntity) {
+        Date data = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+
+        vacanciesEntity.setOpenDate(format.format(data));
         return repository.save(vacanciesEntity);
     }
     @Override
@@ -68,7 +74,7 @@ public class VacanciesServiceImpl implements VacanciesService {
                     if (vacanciesEntity.getDesirableRequirements() !=null && !vacanciesEntity.getDesirableRequirements().isEmpty()){
                         user.setDesirableRequirements(vacanciesEntity.getDesirableRequirements());
                     }
-                    if (vacanciesEntity.getOpenDate() !=null ){
+                    if (vacanciesEntity.getOpenDate() !=null && !vacanciesEntity.getOpenDate().isEmpty() ){
                         user.setOpenDate(vacanciesEntity.getOpenDate());
                     }
                     if (vacanciesEntity.getCloseDate() !=null && !vacanciesEntity.getCloseDate().isEmpty()){
