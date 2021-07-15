@@ -33,6 +33,12 @@ public class OpportunityServiceImpl implements OpportunityService {
                     if (opportunityEntity.getNameOpportunity() != null && !opportunityEntity.getNameOpportunity().isEmpty()) {
                         user.setNameOpportunity(opportunityEntity.getNameOpportunity());
                     }
+                    if (opportunityEntity.getResponsibleName() != null && !opportunityEntity.getResponsibleName().isEmpty()) {
+                        user.setResponsibleName(opportunityEntity.getResponsibleName());
+                    }
+                    if (opportunityEntity.getResponsibleEmail() != null && !opportunityEntity.getResponsibleEmail().isEmpty()){
+                        user.setResponsibleEmail(opportunityEntity.getResponsibleEmail());
+                    }
                     if (opportunityEntity.getDescriptionOpportunity() != null && !opportunityEntity.getDescriptionOpportunity().isEmpty()) {
                         user.setDescriptionOpportunity(opportunityEntity.getDescriptionOpportunity());
                     }
@@ -44,6 +50,15 @@ public class OpportunityServiceImpl implements OpportunityService {
                     }
                     if (opportunityEntity.getRequirementDescription() != null && !opportunityEntity.getRequirementDescription().isEmpty()) {
                         user.setRequirementDescription(opportunityEntity.getRequirementDescription());
+                    }
+                    if (opportunityEntity.getCommunity() != null && !opportunityEntity.getCommunity().isEmpty()){
+                        user.setCommunity(opportunityEntity.getCommunity());
+                    }
+                    if (opportunityEntity.getReleaseTrain() != null && !opportunityEntity.getReleaseTrain().isEmpty()){
+                        user.setReleaseTrain(opportunityEntity.getReleaseTrain());
+                    }
+                    if (opportunityEntity.getSquad() !=null && !opportunityEntity.getSquad().isEmpty()){
+                        user.setSquad(opportunityEntity.getSquad());
                     }
                     if (opportunityEntity.getOpenDate() != null) {
                         user.setOpenDate(opportunityEntity.getOpenDate());
