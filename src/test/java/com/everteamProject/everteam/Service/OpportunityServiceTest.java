@@ -64,7 +64,7 @@ public class OpportunityServiceTest {
                 TypeStatus.valueOf("ABERTO"));
 
         OpportunityEntity value = service.postNewOpportunity(data);
-        assertNotNull(data);
+        assertNotNull(value);
     }
 
     @Test
