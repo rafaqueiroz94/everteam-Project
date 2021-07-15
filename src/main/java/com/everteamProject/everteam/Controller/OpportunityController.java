@@ -29,10 +29,8 @@ public class OpportunityController {
     }
 
     @PatchMapping("/id")
-    public ResponseEntity updateOpportunity(
-            @RequestParam (value = "id")long id,
-            @RequestBody OpportunityEntity opportunityEntity
-    ){
+    public ResponseEntity updateOpportunity(@RequestParam (value = "id")long id,
+                                            @RequestBody OpportunityEntity opportunityEntity){
         return service.updateOpportunity(id,opportunityEntity);
     }
 
