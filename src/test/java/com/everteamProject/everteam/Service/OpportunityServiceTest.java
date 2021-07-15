@@ -93,18 +93,18 @@ public class OpportunityServiceTest {
 
     @Test
     public void testSearchStatus(){
-       List<OpportunityEntity> us = service.searchStatus(TypeStatus.valueOf("ABERTO"));
-       assertEquals( TypeStatus.ABERTO, us.get(0).getStatus());
+       List<OpportunityEntity> us = service.searchStatus(TypeStatus.valueOf("CANCELADO"));
+       assertEquals( TypeStatus.CANCELADO, us.get(0).getStatus());
     }
 
-//  @Test
-//  public void testChangeStatus(){
-//
-//       ResponseEntity<OpportunityEntity> us = service.changeStatus(1L,TypeStatus.CANCELADO);
-//
-//       assertEquals(TypeStatus.CANCELADO, us);
+    @Test
+    public void testChangeStatus() {
 
+      ResponseEntity<OpportunityEntity> us = service.changeStatus(1L, TypeStatus.CANCELADO);
 
+      assertEquals(us.getStatusCode().value(), 200);
+
+    }
 }
 
 

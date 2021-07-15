@@ -15,7 +15,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.xml.crypto.Data;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -34,7 +36,7 @@ public class VacanciesServiceTest {
     @Before
     public void setVac() {
         VacanciesEntity user = new VacanciesEntity();
-//        us.setId(1);
+        user.setId(1);
         user.setCodeVacancies(BigDecimal.valueOf(123));
         user.setNameVacancies("nome vaga");
         user.setNameLeader("nome lider");
@@ -88,5 +90,16 @@ public class VacanciesServiceTest {
         List<VacanciesEntity> us = service.searchStatusVacancies(TypeStatus.ABERTO);
         assertEquals(TypeStatus.ABERTO, us.get(0).getStatus());
     }
-
+    @Test
+    public void getNameLeaderVac(){
+        setVac();
+        List<VacanciesEntity> us = service.getNameLeader("nom");
+        assertEquals("nome lider",us.get(0).getNameLeader());
+    }
+    @Test
+    public void updateStatus(){
+        setVac();
+        ResponseEntity us = service.changeStatusVacancies(1L,TypeStatus.CANCELADO);
+        assertEquals(us.getStatusCode().value(),200);
+    }
 }
