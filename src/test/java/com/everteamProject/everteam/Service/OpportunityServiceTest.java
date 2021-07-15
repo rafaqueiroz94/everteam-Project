@@ -15,7 +15,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -42,26 +41,28 @@ public class OpportunityServiceTest {
             user.setTypeOpportunity("tipo oportunidade");
             user.setRequirement("requerimento");
             user.setRequirementDescription("requerimento descrição");
+            user.setCommunity("community");
+            user.setReleaseTrain("release");
+            user.setSquad("squad");
             user.setOpenDate(null);
             user.setCloseDate(null);
             user.setStatus(TypeStatus.ABERTO);
-
          repository.save(user);
-
-
     }
 
     @After
     public void dellOpp(){
-        repository.deleteAll();
+         repository.deleteAll();
     }
 
     @Test
     public void testNewOpportunity(){
         OpportunityEntity data = new OpportunityEntity(1,BigDecimal.valueOf(123),"Oportunidade",
                 "Rento","teste@email","descrição","tipo oportunidade",
-                "requerimento","requerimento descrição",null,null,
+                "requerimento","requerimento descrição","community","release",
+                "squad",null,null,
                 TypeStatus.valueOf("ABERTO"));
+
         OpportunityEntity value = service.postNewOpportunity(data);
         assertNotNull(data);
     }
@@ -70,15 +71,13 @@ public class OpportunityServiceTest {
     public void testUpdateOpportunity() {
         OpportunityEntity opp = new OpportunityEntity(1,BigDecimal.valueOf(123),"Oportunidade",
                 "ronaldo","teste@email","descrição","tipo oportunidade",
-                "requerimento","requerimento descrição",null,null,
+                "requerimento","requerimento descrição","community","release",
+                "squad",null,null,
                 TypeStatus.valueOf("ABERTO"));
 
         ResponseEntity us = service.updateOpportunity(1L, opp);
-
         assertEquals(us.getStatusCode().value(), 200);
-
     }
-
 
     @Test
     public void testGetOpportunity (){
@@ -87,25 +86,25 @@ public class OpportunityServiceTest {
 
     @Test
     public void testGetNameOpportunity(){
-
         List<OpportunityEntity> us = service.getNameOpportunity("Opor");
         assertNotNull(us);
         assertEquals("Oportunidade",us.get(0).getNameOpportunity());
-
     }
+
     @Test
     public void testSearchStatus(){
        List<OpportunityEntity> us = service.searchStatus(TypeStatus.valueOf("ABERTO"));
        assertEquals( TypeStatus.ABERTO, us.get(0).getStatus());
-
     }
-//    @Test
-//    public void testChangeStatus(){
-//        ResponseEntity<OpportunityEntity> us = service.changeStatus(1L,TypeStatus.CANCELADO);
+
+//  @Test
+//  public void testChangeStatus(){
 //
-//        assertEquals(TypeStatus.CANCELADO, us);
+//       ResponseEntity<OpportunityEntity> us = service.changeStatus(1L,TypeStatus.CANCELADO);
+//
+//       assertEquals(TypeStatus.CANCELADO, us);
 
 
-    }
+}
 
 

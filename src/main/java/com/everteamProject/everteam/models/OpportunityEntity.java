@@ -27,6 +27,9 @@ public class OpportunityEntity implements Serializable {
     private String typeOpportunity;
     private String requirement;
     private String requirementDescription;
+    private String community;
+    private String releaseTrain;
+    private String squad;
     private Date openDate;
     private String closeDate;
 
@@ -105,6 +108,30 @@ public class OpportunityEntity implements Serializable {
         this.requirementDescription = requirementDescription;
     }
 
+    public String getCommunity() {
+        return community;
+    }
+
+    public void setCommunity(String community) {
+        this.community = community;
+    }
+
+    public String getReleaseTrain() {
+        return releaseTrain;
+    }
+
+    public void setReleaseTrain(String releaseTrain) {
+        this.releaseTrain = releaseTrain;
+    }
+
+    public String getSquad() {
+        return squad;
+    }
+
+    public void setSquad(String squad) {
+        this.squad = squad;
+    }
+
     public Date getOpenDate() {
         return openDate;
     }
@@ -133,10 +160,10 @@ public class OpportunityEntity implements Serializable {
 
     }
 
-    public OpportunityEntity(long id, BigDecimal codeOpportunity, String nameOpportunity, String responsibleName,
+    public OpportunityEntity (long id, BigDecimal codeOpportunity, String nameOpportunity, String responsibleName,
                              String responsibleEmail, String descriptionOpportunity, String typeOpportunity,
-                             String requirement, String requirementDescription, Date openDate, String closeDate,
-                             TypeStatus status) {
+                             String requirement, String requirementDescription, String community, String releaseTrain,
+                             String squad, Date openDate, String closeDate, TypeStatus status) {
         this.id = id;
         this.codeOpportunity = codeOpportunity;
         this.nameOpportunity = nameOpportunity;
@@ -146,8 +173,12 @@ public class OpportunityEntity implements Serializable {
         this.typeOpportunity = typeOpportunity;
         this.requirement = requirement;
         this.requirementDescription = requirementDescription;
+        this.community = community;
+        this.releaseTrain = releaseTrain;
+        this.squad = squad;
         this.openDate = openDate;
         this.closeDate = closeDate;
         this.status = status;
     }
 }
+
