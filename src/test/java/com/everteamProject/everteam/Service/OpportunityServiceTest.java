@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -103,6 +104,12 @@ public class OpportunityServiceTest {
       ResponseEntity<OpportunityEntity> us = service.changeStatus(1L, TypeStatus.CANCELADO);
 
       assertEquals(us.getStatusCode().value(), 200);
+
+    }
+    @Test
+    public void testGetIdOpp(){
+        Optional<OpportunityEntity> us = service.getIdOpportunity(1L);
+        assertEquals(1L,us.get().getId());
 
     }
 }

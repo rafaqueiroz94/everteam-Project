@@ -19,6 +19,7 @@ import javax.xml.crypto.Data;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -45,7 +46,7 @@ public class VacanciesServiceTest {
         user.setServiceName("nome do serviço");
         user.setRequirements("requerimentos");
         user.setDesirableRequirements("requerimentos desejados");
-        user.setOpenDate(null);
+        user.setOpenDate("16/07/2021");
         user.setCloseDate(null);
         user.setStatus(TypeStatus.ABERTO);
         VacanciesEntity result = repository.save(user);
@@ -66,40 +67,56 @@ public class VacanciesServiceTest {
         VacanciesEntity value = service.postNewVacancies(data);
         assertNotNull(value);
     }
+
     @Test
-    public void tesUpdateVac(){
+    public void tesUpdateVac() {
         //Alterando DESIRABLE
         setVac();
-        VacanciesEntity vcc = new VacanciesEntity(1,BigDecimal.valueOf(123),"nome vaga",
-                "nome lider","level requerido","level requerido",
-                "nome  serviço","requerimento","testando",
-                null,null,TypeStatus.valueOf("ABERTO"));
+        VacanciesEntity vcc = new VacanciesEntity(1, BigDecimal.valueOf(123), "nome vaga",
+                "nome lider", "level requerido", "level requerido",
+                "nome  serviço", "requerimento", "testando",
+                null, null, TypeStatus.valueOf("ABERTO"));
 
-        ResponseEntity us = service.updateVacancies(1L,vcc);
-        assertEquals(200,us.getStatusCode().value());
+        ResponseEntity us = service.updateVacancies(1L, vcc);
+        assertEquals(200, us.getStatusCode().value());
     }
 
     @Test
-    public void getAllVac() {
+    public void testGetAllVac() {
         assertNotNull(service.getVacancies());
     }
 
     @Test
-    public void getStatusVac(){
+    public void testGetStatusVac() {
         setVac();
         List<VacanciesEntity> us = service.searchStatusVacancies(TypeStatus.ABERTO);
         assertEquals(TypeStatus.ABERTO, us.get(0).getStatus());
     }
+
     @Test
-    public void getNameLeaderVac(){
+    public void testGetNameLeaderVac() {
         setVac();
         List<VacanciesEntity> us = service.getNameLeader("nom");
-        assertEquals("nome lider",us.get(0).getNameLeader());
+        assertEquals("nome lider", us.get(0).getNameLeader());
+    }
+
+    @Test
+    public void testUpdateStatus() {
+        setVac();
+        ResponseEntity us = service.changeStatusVacancies(1L, TypeStatus.CANCELADO);
+        assertEquals(us.getStatusCode().value(), 200);
+    }
+
+    @Test
+    public void testGetIdVac(){
+        setVac();
+        Optional<VacanciesEntity> us = service.getIdVacancies(1L);
+        assertEquals(1,us.get().getId());
     }
     @Test
-    public void updateStatus(){
+    public void testGetDataVac(){
         setVac();
-        ResponseEntity us = service.changeStatusVacancies(1L,TypeStatus.CANCELADO);
-        assertEquals(us.getStatusCode().value(),200);
+        List<VacanciesEntity> us = service.searchDate("16/07/2021");
+        assertEquals("16/07/2021",us.get(0).getOpenDate());
     }
 }
