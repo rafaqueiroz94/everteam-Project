@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -96,5 +97,10 @@ public class VacanciesServiceImpl implements VacanciesService {
                     repository.save(user);
                     return ResponseEntity.ok().build();
                 }).orElse(ResponseEntity.notFound().build());
+    }
+    @Override
+    public Optional<VacanciesEntity> getIdVacancies (Long id){
+        return repository.findById(id);
+
     }
 }

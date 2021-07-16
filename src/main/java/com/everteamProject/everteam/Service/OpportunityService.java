@@ -5,6 +5,7 @@ import com.everteamProject.everteam.models.OpportunityEntity;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OpportunityService {
 
@@ -20,4 +21,6 @@ public interface OpportunityService {
     List<OpportunityEntity> getNameOpportunity(String name);
 
     List<OpportunityEntity> searchStatus(TypeStatus status);
+
+    Optional<OpportunityEntity> getIdOpportunity(Long id);
 }

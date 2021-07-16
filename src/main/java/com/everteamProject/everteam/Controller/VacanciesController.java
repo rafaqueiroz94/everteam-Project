@@ -5,12 +5,14 @@ import com.everteamProject.everteam.Service.VacanciesService;
 import com.everteamProject.everteam.models.Enum.TypeStatus;
 import com.everteamProject.everteam.models.VacanciesEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @ResponseBody
@@ -44,6 +46,11 @@ public class VacanciesController {
     @GetMapping ("/list-vacancies/data")
     public List<VacanciesEntity> getDate(@RequestParam String date){
         return service.searchDate(date);
+    }
+
+    @GetMapping ("/listId/{id}")
+    public Optional<VacanciesEntity> getId(@PathVariable(value = "id")Long id){
+        return service.getIdVacancies(id);
     }
 
     @PatchMapping ("/id")

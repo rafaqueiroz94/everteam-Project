@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 import javax.xml.crypto.Data;
 import java.util.List;
+import java.util.Optional;
 
 public interface VacanciesService  {
 
@@ -24,4 +25,6 @@ public interface VacanciesService  {
     ResponseEntity updateVacancies(Long id, VacanciesEntity vacanciesEntity);
 
     ResponseEntity changeStatusVacancies(Long id, TypeStatus status);
+
+    Optional<VacanciesEntity> getIdVacancies(Long id);
 }

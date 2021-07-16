@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import javax.xml.crypto.Data;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OpportunityServiceImpl implements OpportunityService {
@@ -21,11 +21,11 @@ public class OpportunityServiceImpl implements OpportunityService {
     OpportunityRepository repository;
 
     @Override
-    public OpportunityEntity postNewOpportunity(OpportunityEntity opportunityEntity){
+    public OpportunityEntity postNewOpportunity(OpportunityEntity opportunityEntity) {
         Date data = new Date();
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
-            opportunityEntity.setOpenDate(format.format(data));
+        opportunityEntity.setOpenDate(format.format(data));
 
         return repository.save(opportunityEntity);
     }
@@ -44,7 +44,7 @@ public class OpportunityServiceImpl implements OpportunityService {
                     if (opportunityEntity.getResponsibleName() != null && !opportunityEntity.getResponsibleName().isEmpty()) {
                         user.setResponsibleName(opportunityEntity.getResponsibleName());
                     }
-                    if (opportunityEntity.getResponsibleEmail() != null && !opportunityEntity.getResponsibleEmail().isEmpty()){
+                    if (opportunityEntity.getResponsibleEmail() != null && !opportunityEntity.getResponsibleEmail().isEmpty()) {
                         user.setResponsibleEmail(opportunityEntity.getResponsibleEmail());
                     }
                     if (opportunityEntity.getDescriptionOpportunity() != null && !opportunityEntity.getDescriptionOpportunity().isEmpty()) {
@@ -59,13 +59,13 @@ public class OpportunityServiceImpl implements OpportunityService {
                     if (opportunityEntity.getRequirementDescription() != null && !opportunityEntity.getRequirementDescription().isEmpty()) {
                         user.setRequirementDescription(opportunityEntity.getRequirementDescription());
                     }
-                    if (opportunityEntity.getCommunity() != null && !opportunityEntity.getCommunity().isEmpty()){
+                    if (opportunityEntity.getCommunity() != null && !opportunityEntity.getCommunity().isEmpty()) {
                         user.setCommunity(opportunityEntity.getCommunity());
                     }
-                    if (opportunityEntity.getReleaseTrain() != null && !opportunityEntity.getReleaseTrain().isEmpty()){
+                    if (opportunityEntity.getReleaseTrain() != null && !opportunityEntity.getReleaseTrain().isEmpty()) {
                         user.setReleaseTrain(opportunityEntity.getReleaseTrain());
                     }
-                    if (opportunityEntity.getSquad() !=null && !opportunityEntity.getSquad().isEmpty()){
+                    if (opportunityEntity.getSquad() != null && !opportunityEntity.getSquad().isEmpty()) {
                         user.setSquad(opportunityEntity.getSquad());
                     }
                     if (opportunityEntity.getOpenDate() != null && !opportunityEntity.getOpenDate().isEmpty()) {
@@ -82,32 +82,36 @@ public class OpportunityServiceImpl implements OpportunityService {
 
 
     @Override
-    public ResponseEntity changeStatus(Long id, TypeStatus status){
+    public ResponseEntity changeStatus(Long id, TypeStatus status) {
         return repository.findById(id).
                 map(us -> {
 
-                    if (us.getStatus().toString() !=null) {
+                    if (us.getStatus().toString() != null) {
                         us.setStatus(status);
                     }
 
                     repository.save(us);
-                   return ResponseEntity.ok().build();
-        }).orElse(ResponseEntity.notFound().build());
+                    return ResponseEntity.ok().build();
+                }).orElse(ResponseEntity.notFound().build());
     }
 
     @Override
-    public List getOpportunity(){
+    public List getOpportunity() {
         return repository.findAll();
     }
 
     @Override
-    public List<OpportunityEntity> getNameOpportunity(String name){
+    public List<OpportunityEntity> getNameOpportunity(String name) {
         return repository.findByName(name);
     }
 
     @Override
-    public List<OpportunityEntity> searchStatus(TypeStatus status){
+    public List<OpportunityEntity> searchStatus(TypeStatus status) {
         return repository.findByStatus(status.toString());
     }
 
+    @Override
+    public Optional<OpportunityEntity> getIdOpportunity(Long id) {
+        return repository.findById(id);
+    }
 }
